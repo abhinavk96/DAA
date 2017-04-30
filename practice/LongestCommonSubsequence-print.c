@@ -39,11 +39,10 @@ int LCS(char* X, char* Y, char*L, int n, int m, int size)
 }
 void printLCS(char*L, int l)
 {
-	// L[l] = '\0';
 	int i;
 	for(i=l-1;i>=0;i--)
 	{
 		printf("%c",L[i]);
 	}
-	printf("\n");
+	printf("\n");	
 }
