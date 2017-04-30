@@ -18,12 +18,7 @@ int i, j,k,n;
 int V=5;
 scanf("%d",&n);
 // int graph[V][V];
-int ** graph;
-graph = (int**) malloc(n*sizeof(int*));
-for(i=0;i<n;i++)
-{
-    graph[i] =(int*) malloc(sizeof(int));
-}
+int graph[V][V]
 for(i=0;i<n;i++)
 {
     for(j=0;j<n;j++)

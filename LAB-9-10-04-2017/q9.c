@@ -24,19 +24,19 @@ void solve(float *expr, int n)
 {
   /* solve the puzzle and use printf to print the parenthesized expression and result to screen */
 	int i =0;
-	for(i=0;i<2*n-1;i++)
-	{
-		printf("%f ",expr[i]);
-	}
+	// for(i=0;i<2*n-1;i++)
+	// {
+	// 	printf("%f ",expr[i]);
+	// }
 	float operators[n][n];
 	float numbers[n];
-	for(i=0;i<n;i+=2)
+	for(i=0;i<n;i++)
 	{
-		numbers[i]= expr[i];
+		numbers[i]= expr[2*i];
 	}
-	for(i=1;i<n;i+=2)
+	for(i=0;i<n;i++)
 	{
-		operators[i-1][i+1]=expr[i];
+		operators[i][i+1]=expr[2*(i)+1];
 	}
 	printf("%f",MatrixChain(n,numbers,operators));
 }
@@ -66,19 +66,23 @@ float MatrixChain(int n,float p[],float operators[][n])
 	for(i=0;i<n;i++)
 	{
 		m[i][i] = p[i];
+		// printf("%f\n",m[i][i]);
 	}
 	for(l=2;l<n;l++)
 	{
-		for(i=1;i<n-l+1;i++)
+		for(i=0;i<n-l+1;i++)
 		{
 			j = i +l-1;
 			m[i][j]=INT_MIN;
-			for(k=i;k<=j-1;k++)
+			for(k=i+;k<=j-1;k++)
 			{
-				q = m[i][k] + m[k+1][j] + calculate(m[i][k],m[k+1][j],operators[k][k+1]);
+				q =  m[i][k]+m[k+1][j]+calculate(m[i][k],m[k+1][j],operators[k][k+1]);
+
 				if(q>m[i][j])
 				{
 					m[i][j]=q;
+					printf("%f %d %d %d\n",q,i,j,k);
+				// printf("%f %f %f %f\n",q,m[i][k],m[k+1][j],operators[k][k+1]);
 					bracket[i][j]=k;
 				}
 			}
@@ -87,7 +91,7 @@ float MatrixChain(int n,float p[],float operators[][n])
 	 // The first matrix is printed as 'A', next as 'B',
     // and so on
     char name = 'A';
-    float ans = m[1][n-1];
+    float ans = m[0][n-1];
     // printBrackets(1,n-1,n,bracket,&name);
 	return ans;
 }
