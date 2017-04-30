@@ -12,9 +12,7 @@ int main()
 	{
 		board[i] = (int*)malloc(n*sizeof(int));
 	}
-
 	NQueens(board,n);
-
 }
 void NQueens(int **board,int n)
 {
